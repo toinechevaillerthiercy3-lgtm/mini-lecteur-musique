@@ -1,6 +1,6 @@
 let playlist = JSON.parse(localStorage.getItem("playlist")) || [];
 
-async function addVideo() {
+function addVideo() {
     const input = document.getElementById("youtubeUrl");
     const url = input.value.trim();
 
@@ -11,34 +11,18 @@ async function addVideo() {
         return;
     }
 
-    try {
-        // 🔥 récupère le titre YouTube
-        const response = await fetch(
-            `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`
-        );
+    // fallback stable (plus fiable que oEmbed)
+    const title = "🎵 Vidéo YouTube";
 
-        const data = await response.json();
-        const title = data.title;
+    playlist.push({
+        id: videoId,
+        title: title
+    });
 
-        // on stocke id + titre
-        playlist.push({ id: videoId, title: title });
+    localStorage.setItem("playlist", JSON.stringify(playlist));
 
-        localStorage.setItem("playlist", JSON.stringify(playlist));
-
-        input.value = "";
-        renderPlaylist();
-
-    } catch (error) {
-        alert("Erreur lors de la récupération du titre YouTube");
-        console.error(error);
-
-        // fallback si oEmbed bloque
-        playlist.push({ id: videoId, title: "Vidéo YouTube" });
-
-        localStorage.setItem("playlist", JSON.stringify(playlist));
-        input.value = "";
-        renderPlaylist();
-    }
+    input.value = "";
+    renderPlaylist();
 }
 
 function extractVideoId(url) {
@@ -48,17 +32,28 @@ function extractVideoId(url) {
 
 function playVideo(id) {
     document.getElementById("player").src =
-        "https://www.youtube.com/embed/" + id;
+        "https://www.youtube.com/embed/" + id + "?autoplay=1";
 }
 
 function renderPlaylist() {
     const list = document.getElementById("playlist");
     list.innerHTML = "";
 
-    playlist.forEach((video) => {
+    playlist.forEach((video, index) => {
         const li = document.createElement("li");
-        li.textContent = "🎵 " + video.title;
+
+        li.innerHTML = `
+            <div class="song">
+                <div class="cover">🎵</div>
+                <div>
+                    <div class="title">${video.title}</div>
+                    <div class="sub">YouTube track ${index + 1}</div>
+                </div>
+            </div>
+        `;
+
         li.onclick = () => playVideo(video.id);
+
         list.appendChild(li);
     });
 }
