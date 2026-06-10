@@ -15,8 +15,13 @@ function savePlaylist() {
 }
 
 function extractVideoId(url) {
-    const match = url.match(/(?:youtu\.be\/|youtube\.com.*v=)([^&]+)/);
-    return match ? match[1] : null;
+    try {
+        const cleanUrl = url.split("&")[0]; // enlève tout après &
+        const match = cleanUrl.match(/(?:youtu\.be\/|youtube\.com.*v=)([^?&]+)/);
+        return match ? match[1] : null;
+    } catch (e) {
+        return null;
+    }
 }
 
 /* =========================
