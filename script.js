@@ -5,27 +5,28 @@ let player;
 console.log("SCRIPT OK");
 
 function addVideo() {
-    if (playlist.includes(videoId[1])) {
-    alert("Cette vidéo est déjà dans la playlist");
-    return;
-}
     const input = document.getElementById("youtubeUrl");
     const url = input.value.trim();
 
-    const videoId = url.match(/(?:youtu\.be\/|youtube\.com.*v=)([^&]+)/);
+    const match = url.match(/(?:youtu\.be\/|youtube\.com.*v=)([^&]+)/);
+    const videoId = match ? match[1] : null;
 
     if (!videoId) {
         alert("Lien YouTube invalide");
         return;
     }
 
-    playlist.push(videoId[1]);
+    if (playlist.includes(videoId)) {
+        alert("Cette vidéo est déjà dans la playlist");
+        return;
+    }
+
+    playlist.push(videoId);
     localStorage.setItem("playlist", JSON.stringify(playlist));
 
     input.value = "";
     renderPlaylist();
 }
-
 function playVideo(index) {
     currentIndex = index;
 
