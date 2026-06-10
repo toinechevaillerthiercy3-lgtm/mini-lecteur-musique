@@ -29,9 +29,14 @@ function addVideo() {
 function playVideo(index) {
     currentIndex = index;
 
-    if (player) {
-        player.loadVideoById(playlist[currentIndex]);
+    console.log("Lecture vidéo :", playlist[currentIndex]);
+
+    if (!player) {
+        console.log("Player pas prêt");
+        return;
     }
+
+    player.loadVideoById(playlist[currentIndex]);
 }
 
 function nextVideo() {
