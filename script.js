@@ -1,3 +1,4 @@
+console.log("SCRIPT CHARGE OK");
 let playlist = JSON.parse(localStorage.getItem("playlist")) || [];
 let currentIndex = 0;
 let player;
