@@ -170,12 +170,17 @@ input[type="url" i]:focus {
 }
 
 
-.biblibtn {
-    cursor: pointer;
-    transfort:scale(0.95);
+button[type="submit"] {
     border-radius: 10px;
-    
+    padding: 5px;
+    outline:none;
+    cursor: pointer;
+    transition: .3s;
+    font-family: 'Inter';
+}
 
+.biblibtn button:hover {
+    transform: scale(0.95);
 }
 
 
