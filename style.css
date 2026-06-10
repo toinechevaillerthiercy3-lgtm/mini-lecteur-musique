@@ -184,10 +184,11 @@ input[type="url" i]:focus {
     border: none;
     font-family: 'Inter';
     transition: .3s;
-    box-shadow:
-    0 0 10px #0000ff,
+}
+#youtubeUrl:focus {
+     0 0 10px #0000ff,
     0 0 20px #0000ff,
     0 0 40px #0000ff,
     0 0 80px #0000ff,
     0 0 160px #0000ff;
-}
+    transform: scale(0.9);
