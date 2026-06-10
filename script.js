@@ -16,14 +16,17 @@ function savePlaylist() {
 
 function extractVideoId(url) {
     try {
-        const cleanUrl = url.split("&")[0]; // enlève tout après &
-        const match = cleanUrl.match(/(?:youtu\.be\/|youtube\.com.*v=)([^?&]+)/);
-        return match ? match[1] : null;
+        const u = new URL(url);
+        
+        if (u.hostname.includes("youtu.be")) {
+            return u.pathname.slice(1);
+        }
+
+        return u.searchParams.get("v");
     } catch (e) {
         return null;
     }
 }
-
 /* =========================
    AJOUT VIDEO
 ========================= */
