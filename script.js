@@ -1,15 +1,32 @@
 let playlist = JSON.parse(localStorage.getItem("playlist")) || [];
 let currentIndex = 0;
-let player;
+let player = null;
 
 console.log("SCRIPT OK");
 
+// 🔥 expose les fonctions dès le début (important pour HTML onclick)
+window.addVideo = addVideo;
+window.playVideo = playVideo;
+window.nextVideo = nextVideo;
+window.previousVideo = previousVideo;
+
+function savePlaylist() {
+    localStorage.setItem("playlist", JSON.stringify(playlist));
+}
+
+function extractVideoId(url) {
+    const match = url.match(/(?:youtu\.be\/|youtube\.com.*v=)([^&]+)/);
+    return match ? match[1] : null;
+}
+
+/* =========================
+   AJOUT VIDEO
+========================= */
 function addVideo() {
     const input = document.getElementById("youtubeUrl");
     const url = input.value.trim();
 
-    const match = url.match(/(?:youtu\.be\/|youtube\.com.*v=)([^&]+)/);
-    const videoId = match ? match[1] : null;
+    const videoId = extractVideoId(url);
 
     if (!videoId) {
         alert("Lien YouTube invalide");
@@ -22,25 +39,36 @@ function addVideo() {
     }
 
     playlist.push(videoId);
-    localStorage.setItem("playlist", JSON.stringify(playlist));
+    savePlaylist();
 
     input.value = "";
+
     renderPlaylist();
+
+    if (player) {
+        playVideo(playlist.length - 1);
+    }
 }
 
+/* =========================
+   PLAY VIDEO
+========================= */
 function playVideo(index) {
+    if (playlist.length === 0) return;
+
     currentIndex = index;
 
-    console.log("Lecture vidéo :", playlist[currentIndex]);
-
     if (!player) {
-        console.log("Player pas prêt");
+        console.warn("Player pas encore prêt");
         return;
     }
 
     player.loadVideoById(playlist[currentIndex]);
 }
 
+/* =========================
+   NAVIGATION
+========================= */
 function nextVideo() {
     if (playlist.length === 0) return;
 
@@ -57,14 +85,22 @@ function previousVideo() {
     playVideo(currentIndex);
 }
 
+/* =========================
+   RENDER PLAYLIST
+========================= */
 function renderPlaylist() {
     const list = document.getElementById("playlist");
+    if (!list) return;
+
     list.innerHTML = "";
 
     playlist.forEach((id, index) => {
         const li = document.createElement("li");
 
-        fetch("https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=" + id + "&format=json")
+        li.textContent = "Chargement...";
+
+        // 🔥 récup titre YouTube
+        fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${id}&format=json`)
             .then(r => r.json())
             .then(data => {
                 li.textContent = "🎵 " + data.title;
@@ -81,9 +117,15 @@ function renderPlaylist() {
 
         btn.onclick = (e) => {
             e.stopPropagation();
+
             playlist.splice(index, 1);
-            localStorage.setItem("playlist", JSON.stringify(playlist));
+            savePlaylist();
             renderPlaylist();
+
+            // reset lecture si besoin
+            if (playlist.length === 0) {
+                if (player) player.stopVideo();
+            }
         };
 
         li.appendChild(btn);
@@ -91,24 +133,33 @@ function renderPlaylist() {
     });
 }
 
-/* 🔥 AJOUT IMPORTANT : INITIALISATION YOUTUBE PLAYER */
+/* =========================
+   YOUTUBE API
+========================= */
 function onYouTubeIframeAPIReady() {
     player = new YT.Player("player", {
         height: "300",
         width: "100%",
         videoId: playlist[0] || "",
         events: {
-            onStateChange: function (event) {
+            onStateChange: (event) => {
                 if (event.data === YT.PlayerState.ENDED) {
                     nextVideo();
-                    window.addVideo = addVideo;
-window.playVideo = playVideo;
-window.nextVideo = nextVideo;
-window.previousVideo = previousVideo;
                 }
             }
         }
     });
 
     renderPlaylist();
+
+    if (playlist.length > 0) {
+        playVideo(0);
+    }
 }
+
+/* =========================
+   INIT SAFE (IMPORTANT)
+========================= */
+window.addEventListener("load", () => {
+    renderPlaylist();
+});
