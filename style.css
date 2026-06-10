@@ -83,4 +83,25 @@ iframe {
     input[type="url" i] {
         width: 90%;
     }
+
+    #playlist {
+    list-style: none;
+    padding: 0;
+    width: 80%;
+    margin: 20px auto;
+}
+
+#playlist li {
+    background: rgba(0,0,0,0.4);
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#playlist li:hover {
+    transform: scale(1.02);
+    background: rgba(0,0,0,0.6);
 }
