@@ -1,34 +1,21 @@
-html, body {
-    all: unset;
-    margin: 0;
-    padding: 0;
-    background-image: url("bg.jpg") !important;
-    background-size: cover;
-    background-position: center;
-    font-family: 'Inter', sans-serif !important;
-    color: white !important;
 body {
     background-image: url(bg.jpg);
-    margin: 0;
-    font-family: 'Inter';
-    color: white;
 }
 
-/* ===== TITRE ===== */
 h1 {
     text-align: center;
+    font-family: 'Inter';
     color: white;
 }
 
-/* ===== NAVBAR ===== */
 .navbar {
-    font-family: 'Inter';
-    text-align: center;
-    justify-content: center;
-    gap: 30px;
-    align-items: center;
-    flex-direction: column;
-    display: flex;
+   font-family: 'Inter';
+   text-align: center;
+   justify-content: center;
+   gap: 30px;
+   align-items: center;
+   flex-direction: column;
+   display: flex;
 }
 
 .nav-btn {
@@ -39,113 +26,125 @@ h1 {
     gap: 30px;
     color: black;
     transition: .3s;
+    
+    
+}
+
+li {
+    color: white;
+}
+
+.navbar a {
+    text-decoration: none;
+}
+
+.navbar a:visited {
+    color:black;
+
 }
 
 .nav-btn:hover {
     transform: scale(0.9);
-    box-shadow:
+     box-shadow:
     0 0 10px #0000ff,
     0 0 20px #0000ff,
     0 0 40px #0000ff,
-    0 0 80px #0000ff;
+    0 0 80px #0000ff,
+    0 0 160px #0000ff;
+    text-decoration: none;
 }
 
-/* ===== LIENS ===== */
+
+.musique {
+    text-align: center;
+    background-color: darkslategray;
+    height: auto;
+    
+}
+
 a {
     text-decoration: none;
     width: 200px;
     color: black;
     border-radius: 5px;
-}
-
-.navbar a:visited {
-    color: black;
-}
-
-/* ===== CONVERTIR ===== */
-.convertir {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    padding: 5px;
-    flex-direction: column;
-}
-
-/* INPUT */
-input[type="url"] {
-    padding: 5px;
-    border-radius: 10px;
-    outline: none;
-    border: none;
     font-family: 'Inter';
-    transition: .3s;
+    
 }
 
-input[type="url"]:focus {
-    box-shadow:
-    0 0 10px #0000ff,
-    0 0 20px #0000ff,
-    0 0 40px #0000ff;
-    transform: scale(0.98);
+
+a:hover {
+    color: blue;
+    text-decoration: underline;
 }
 
-/* BUTTON */
-button {
-    border-radius: 10px;
-    padding: 5px;
-    cursor: pointer;
-    transition: .3s;
-    font-family: 'Inter';
-}
 
-button:hover {
-    transform: scale(1.05);
-}
-
-/* ===== PLAYER YOUTUBE ===== */
-iframe {
-    border-radius: 12px;
-    margin-top: 20px;
-}
-
-/* ===== PLAYLIST ===== */
-#playlist {
-    list-style: none;
-    padding: 0;
-    width: 80%;
-    margin: 20px auto;
-}
-
-#playlist li {
-    background: rgba(0,0,0,0.5);
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s;
-    color: white;
-}
-
-#playlist li:hover {
-    transform: scale(1.02);
-    background: rgba(0,0,0,0.7);
-}
-
-/* ===== DOWNLOAD ===== */
 .download {
     background-color: white;
+    text-decoration: none;
     width: 250px;
     border-radius: 5px;
     text-align: center;
     transition: .3s;
+    
 }
+
 
 .download:hover {
-    transform: scale(1.1);
+    transform: scale(1.1)
 }
 
-/* ===== RETOUR ===== */
+.convertir {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+    top: 50%;
+    bottom:50%;
+    
+    
+}
+
+input[type="url" i] {
+    padding:5px;
+    border-radius: 10px;
+    outline:none;
+    border: none;
+    font-family: 'Inter';
+    transition: .3s;
+    
+}
+
+button[type="submit"] {
+    border-radius: 10px;
+    padding: 5px;
+    outline:none;
+    cursor: pointer;
+    transition: .3s;
+    font-family: 'Inter';
+    
+}
+
+button[type="submit"]:hover {
+    transform: scale(1.1)
+    
+    
+}
+
+
+input[type="url" i]:focus {
+    box-shadow:
+    0 0 10px #0000ff,
+    0 0 20px #0000ff,
+    0 0 40px #0000ff,
+    0 0 80px #0000ff,
+    0 0 160px #0000ff;
+    transform: scale(0.9);
+    
+}
+
+
 .revenir-mp3 {
     display: flex;
     justify-content: center;
@@ -161,21 +160,11 @@ iframe {
     color: black;
     text-align: center;
     border-radius: 5px;
+    text-decoration: none;
     transition: .3s;
 }
 
 .revenir-mp3 a:hover {
     color: #9400D3;
     transform: scale(0.95);
-}
-
-/* ===== MOBILE ===== */
-@media (max-width: 600px) {
-    input[type="url"] {
-        width: 90%;
-    }
-
-    #playlist {
-        width: 95%;
-    }
 }
