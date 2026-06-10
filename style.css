@@ -102,7 +102,7 @@ a:hover {
     position: relative;
     top: 50%;
     bottom:50%;
-    display-direction: column;
+    flex-direction: column;
     
     
     
