@@ -11,7 +11,7 @@ function addVideo() {
         return;
     }
 
-    // fallback stable (plus fiable que oEmbed)
+    // fallback stable (plus fiable que oEmbed)z
     const title = "🎵 Vidéo YouTube";
 
     playlist.push({
