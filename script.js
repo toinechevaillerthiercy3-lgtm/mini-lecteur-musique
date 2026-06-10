@@ -72,6 +72,7 @@ function renderPlaylist() {
     });
 }
 
+```js
 function onYouTubeIframeAPIReady() {
     player = new YT.Player("player", {
         height: "300",
