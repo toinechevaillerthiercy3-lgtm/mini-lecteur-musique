@@ -101,6 +101,10 @@ function onYouTubeIframeAPIReady() {
             onStateChange: function (event) {
                 if (event.data === YT.PlayerState.ENDED) {
                     nextVideo();
+                    window.addVideo = addVideo;
+window.playVideo = playVideo;
+window.nextVideo = nextVideo;
+window.previousVideo = previousVideo;
                 }
             }
         }
