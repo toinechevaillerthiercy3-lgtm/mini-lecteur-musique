@@ -33,13 +33,8 @@ function addVideo() {
 
     const videoId = extractVideoId(url);
 
-    if (!videoId) {
+    if (!videoId || videoId.includes("?") || videoId.includes("&")) {
         alert("Lien YouTube invalide");
-        return;
-    }
-
-    if (playlist.includes(videoId)) {
-        alert("Cette vidéo est déjà dans la playlist");
         return;
     }
 
@@ -47,12 +42,9 @@ function addVideo() {
     savePlaylist();
 
     input.value = "";
-
     renderPlaylist();
 
-    if (player) {
-        playVideo(playlist.length - 1);
-    }
+    if (player) playVideo(playlist.length - 1);
 }
 
 /* =========================
