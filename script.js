@@ -16,13 +16,10 @@ function savePlaylist() {
 
 function extractVideoId(url) {
     try {
-        const u = new URL(url);
+        const clean = url.split("&")[0]; // enlève tout après &
         
-        if (u.hostname.includes("youtu.be")) {
-            return u.pathname.slice(1);
-        }
-
-        return u.searchParams.get("v");
+        const match = clean.match(/(?:youtu\.be\/|v=)([^?&]+)/);
+        return match ? match[1] : null;
     } catch (e) {
         return null;
     }
