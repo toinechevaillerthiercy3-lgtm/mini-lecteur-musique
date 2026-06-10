@@ -11,14 +11,7 @@ function addVideo() {
         return;
     }
 
-    // fallback stable (plus fiable que oEmbed)z
-    const title = "🎵 Vidéo YouTube";
-
-    playlist.push({
-        id: videoId,
-        title: title
-    });
-
+    playlist.push(videoId);
     localStorage.setItem("playlist", JSON.stringify(playlist));
 
     input.value = "";
@@ -32,28 +25,17 @@ function extractVideoId(url) {
 
 function playVideo(id) {
     document.getElementById("player").src =
-        "https://www.youtube.com/embed/" + id + "?autoplay=1";
+        "https://www.youtube.com/embed/" + id;
 }
 
 function renderPlaylist() {
     const list = document.getElementById("playlist");
     list.innerHTML = "";
 
-    playlist.forEach((video, index) => {
+    playlist.forEach((id, index) => {
         const li = document.createElement("li");
-
-        li.innerHTML = `
-            <div class="song">
-                <div class="cover">🎵</div>
-                <div>
-                    <div class="title">${video.title}</div>
-                    <div class="sub">YouTube track ${index + 1}</div>
-                </div>
-            </div>
-        `;
-
-        li.onclick = () => playVideo(video.id);
-
+        li.textContent = "🎵 Musique " + (index + 1);
+        li.onclick = () => playVideo(id);
         list.appendChild(li);
     });
 }
