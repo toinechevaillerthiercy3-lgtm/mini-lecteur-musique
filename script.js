@@ -27,6 +27,7 @@ function addVideo() {
     input.value = "";
     renderPlaylist();
 }
+
 function playVideo(index) {
     currentIndex = index;
 
@@ -63,7 +64,6 @@ function renderPlaylist() {
     playlist.forEach((id, index) => {
         const li = document.createElement("li");
 
-        // nom de la musique
         fetch("https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=" + id + "&format=json")
             .then(r => r.json())
             .then(data => {
@@ -73,16 +73,14 @@ function renderPlaylist() {
                 li.textContent = "🎵 Vidéo " + (index + 1);
             });
 
-        // jouer au clic
         li.onclick = () => playVideo(index);
 
-        // bouton supprimer
         const btn = document.createElement("button");
         btn.textContent = "❌";
         btn.style.marginLeft = "10px";
 
         btn.onclick = (e) => {
-            e.stopPropagation(); // évite de lancer la vidéo
+            e.stopPropagation();
             playlist.splice(index, 1);
             localStorage.setItem("playlist", JSON.stringify(playlist));
             renderPlaylist();
@@ -91,4 +89,22 @@ function renderPlaylist() {
         li.appendChild(btn);
         list.appendChild(li);
     });
+}
+
+/* 🔥 AJOUT IMPORTANT : INITIALISATION YOUTUBE PLAYER */
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player("player", {
+        height: "300",
+        width: "100%",
+        videoId: playlist[0] || "",
+        events: {
+            onStateChange: function (event) {
+                if (event.data === YT.PlayerState.ENDED) {
+                    nextVideo();
+                }
+            }
+        }
+    });
+
+    renderPlaylist();
 }
