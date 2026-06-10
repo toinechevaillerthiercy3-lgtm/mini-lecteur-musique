@@ -177,7 +177,7 @@ input[type="url" i]:focus {
 }
 
 
-#youtubeUrl a {
+#youtubeUrl {
     padding: 5px;
     border-radius: 10px;
     outline: none;
