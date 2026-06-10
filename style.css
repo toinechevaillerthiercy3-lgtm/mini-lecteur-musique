@@ -177,6 +177,7 @@ button[type="submit"] {
     cursor: pointer;
     transition: .3s;
     font-family: 'Inter';
+    border: black;
 }
 
 .biblibtn button:hover {
