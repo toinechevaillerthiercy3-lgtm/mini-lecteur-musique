@@ -173,6 +173,8 @@ input[type="url" i]:focus {
 .biblibtn {
     cursor: pointer;
     transfort:scale(0.95);
+    border-radius: 10px;
+    
 
 }
 
@@ -186,9 +188,10 @@ input[type="url" i]:focus {
     transition: .3s;
 }
 #youtubeUrl:focus {
-     0 0 10px #0000ff,
+    box-shadow:
+    0 0 10px #0000ff,
     0 0 20px #0000ff,
     0 0 40px #0000ff,
     0 0 80px #0000ff,
     0 0 160px #0000ff;
-    transform: scale(0.9);
+    transform:scale(0.9);
