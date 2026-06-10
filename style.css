@@ -168,3 +168,20 @@ input[type="url" i]:focus {
     color: #9400D3;
     transform: scale(0.95);
 }
+
+
+.biblibtn {
+    display: flex;
+
+
+}
+
+
+#youtubeUrl a {
+    padding: 5px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    font-family: 'Inter';
+    transition: .3s;
+}
