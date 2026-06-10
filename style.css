@@ -1,174 +1,112 @@
 body {
-    background-image: url(bg.jpg);
+    background-color: #121212;
 }
 
+/* ===== TITRE STYLE SPOTIFY ===== */
 h1 {
+    color: #1db954;
     text-align: center;
-    font-family: 'Inter';
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* ===== INPUT + BUTTON STYLE ===== */
+input {
+    background: #2a2a2a;
     color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 15px;
+    width: 60%;
+    outline: none;
 }
 
-.navbar {
-   font-family: 'Inter';
-   text-align: center;
-   justify-content: center;
-   gap: 30px;
-   align-items: center;
-   flex-direction: column;
-   display: flex;
+input::placeholder {
+    color: #aaa;
 }
 
-.nav-btn {
-    border-radius: 10px;
-    padding: 10px;
-    background-color: azure;
-    display: flex;
-    gap: 30px;
-    color: black;
-    transition: .3s;
-    
-    
+button {
+    background: #1db954;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #17a74a;
+}
+
+/* ===== PLAYER STYLE ===== */
+iframe {
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+/* ===== PLAYLIST STYLE SPOTIFY ===== */
+ul {
+    list-style: none;
+    padding: 0;
+    width: 80%;
+    margin: auto;
 }
 
 li {
-    color: white;
+    background: #181818;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 10px;
     cursor: pointer;
-}
-
-.navbar a {
-    text-decoration: none;
-}
-
-.navbar a:visited {
-    color:black;
-
-}
-
-.nav-btn:hover {
-    transform: scale(0.9);
-     box-shadow:
-    0 0 10px #0000ff,
-    0 0 20px #0000ff,
-    0 0 40px #0000ff,
-    0 0 80px #0000ff,
-    0 0 160px #0000ff;
-    text-decoration: none;
-}
-
-
-.musique {
-    text-align: center;
-    background-color: darkslategray;
-    height: auto;
-    
-}
-
-a {
-    text-decoration: none;
-    width: 200px;
-    color: black;
-    border-radius: 5px;
-    font-family: 'Inter';
-    
-}
-
-
-a:hover {
-    color: blue;
-    text-decoration: underline;
-}
-
-
-.download {
-    background-color: white;
-    text-decoration: none;
-    width: 250px;
-    border-radius: 5px;
-    text-align: center;
-    transition: .3s;
-    
-}
-
-
-.download:hover {
-    transform: scale(1.1)
-}
-
-.convertir {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    padding: 5px;
-    position: relative;
-    top: 50%;
-    bottom:50%;
-    flex-direction: column;
-    gap: 20px;
-    
-    
-    
-}
-
-input[type="url" i] {
-    padding:5px;
-    border-radius: 10px;
-    outline:none;
-    border: none;
-    font-family: 'Inter';
-    transition: .3s;
-    
-}
-
-button[type="submit"] {
-    border-radius: 10px;
-    padding: 5px;
-    outline:none;
-    cursor: pointer;
-    transition: .3s;
-    font-family: 'Inter';
-    
-}
-
-button[type="submit"]:hover {
-    transform: scale(1.1)
-    
-    
-}
-
-
-input[type="url" i]:focus {
-    box-shadow:
-    0 0 10px #0000ff,
-    0 0 20px #0000ff,
-    0 0 40px #0000ff,
-    0 0 80px #0000ff,
-    0 0 160px #0000ff;
-    transform: scale(0.9);
-    
-}
-
-
-.revenir-mp3 {
+    transition: 0.2s;
     display: flex;
+    align-items: center;
+}
+
+li:hover {
+    background: #282828;
+    transform: scale(1.02);
+}
+
+/* ===== STRUCTURE MUSIQUE ===== */
+.song {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cover {
+    width: 45px;
+    height: 45px;
+    background: #1db954;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    width: 100%;
-    margin-top: 30px;
+    font-size: 18px;
 }
 
-.revenir-mp3 a {
-    display: block;
-    width: 150px;
-    padding: 10px;
-    background-color: white;
-    color: black;
-    text-align: center;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: .3s;
+.title {
+    font-weight: bold;
 }
 
-.revenir-mp3 a:hover {
-    color: #9400D3;
-    transform: scale(0.95);
+.sub {
+    font-size: 12px;
+    color: #b3b3b3;
+}
+
+/* ===== CONTAINER AMÉLIORÉ ===== */
+.navbar, .convertir {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===== ANIMATION GLOBALE ===== */
+* {
+    transition: all 0.2s ease;
 }
