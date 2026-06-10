@@ -171,8 +171,8 @@ input[type="url" i]:focus {
 
 
 .biblibtn {
-    display: flex;
-
+    cursor: pointer;
+    transfort:scale(0.95);
 
 }
 
